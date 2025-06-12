@@ -1,4 +1,4 @@
-# MambaIDT: Insider Threat Detection via Sequence and Statistical Modeling
+# MambaITD: An Efficient Cross-Modal Mamba Network for Insider Threat Detection
 
 MambaIDT is a pipeline for detecting insider threats by combining behavioral sequences and statistical features using a Mamba-inspired neural architecture.
 
