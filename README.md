@@ -58,19 +58,19 @@ Prepare your CERT-like logs and follow these steps:
 
 ```bash
 # Split logs by user/date
-python preprocess/step1_log_split.py 
+python preprocess/step1_log_split.py --config config.yaml
 
 # Merge different source logs
-python preprocess/step2_log_merge.py
+python preprocess/step2_log_merge.py --config config.yaml
 
 # Add labels based on threat scenarios
-python preprocess/step3_log_labeling.py
+python preprocess/step3_log_labeling.py --config config.yaml
 
 # Extract behavioral sequence features
-python preprocess/step41_sequence_feature_engineering.py
+python preprocess/step41_sequence_feature_engineering.py --config config.yaml
 
 # Extract statistical features
-python preprocess/step42_stat_feature_engineering.py
+python preprocess/step42_stat_feature_engineering.py --config config.yaml
 ```
 
 Output will be saved under `preprocess/features/sequence/` and `statistics/`.
@@ -80,7 +80,7 @@ Output will be saved under `preprocess/features/sequence/` and `statistics/`.
 ## 🧠 Model Training
 
 ```bash
-python src/run_experiment.py
+python src/run_experiment.py  --config config.yaml
 ```
 
 - Loads sequence/stat features from `preprocess/features/`
