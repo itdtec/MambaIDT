@@ -1,0 +1,18 @@
+paths:
+  seq_csv: "../preprocess/features/sequence/scenario_2_AAF0535.csv"
+  stat_csv: "../preprocess/features/statistics/scenario_2_AAF0535.csv"
+  checkpoint: "checkpoints"
+
+experiment:
+  max_seq_len: 50
+  behavior_vocab_size: 192
+  model_dim: 128
+  num_stat_features: 22
+  num_layers: 4
+  hidden_dim: 32
+  batch_size: 16
+  learning_rate: 0.01
+  epochs: 100
+  train_split: 0.9
+  anomaly_aug: 3
+  lambda_gate: 0.01

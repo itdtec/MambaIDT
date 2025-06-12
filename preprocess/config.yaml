@@ -1,0 +1,140 @@
+# multi_config.yaml
+domain_extract:
+  source_path: "../data/CERT_R4.2/http.csv"
+  output_path: "output/http_domains.csv"
+  chunk_size: 100000
+
+
+domain_categories:
+  input_path: "output/http_domains.csv"
+  output_path: "output/http_domains_with_category.csv"
+
+
+device_extract:
+  ldap_path: "../data/CERT_R4.2/LDAP/2009-12.csv"
+  logon_path: "../data/CERT_R4.2/logon.csv"
+#  ldap_user_col: "user_id"        # Column name in LDAP file for user ID
+  output_path: "output/ldap_with_device.csv"
+
+
+department_extract:
+  ldap_path: "output/ldap_with_device.csv"
+  output_path: "output/ldap_with_device_department.csv"
+
+
+step1_log_split:
+  dataset: 4.2
+  chunk_size: 1000000
+  file_paths:
+    logon:  "../data/CERT_R4.2/logon.csv"
+    device: "../data/CERT_R4.2/device.csv"
+    http:   "../data/CERT_R4.2/http.csv"
+    email:  "../data/CERT_R4.2/email.csv"
+    file:   "../data/CERT_R4.2/file.csv"
+  answer_path: "../data/answers/insiders.csv"
+  output_base: "output/log_split"
+
+
+step2_log_merge:
+  input_base: "output/log_split"
+  output_base: "output/log_merged"
+  scenarios:
+    - scenario_1
+    - scenario_2
+    - scenario_3
+  data_files:
+    - logon.csv
+    - device.csv
+    - http.csv
+    - email.csv
+    - file.csv
+
+
+step3_log_labeling:
+  input_base: "output/log_merged"
+  answer_base: "../data/answers"
+  scenarios:
+    - scenario_1
+    - scenario_2
+    - scenario_3
+  answer_subfolders:
+    - r4.2-1
+    - r4.2-2
+    - r4.2-3
+  target_columns:
+    - id
+    - date
+    - user
+    - pc
+    - activity
+    - behavior
+    - url
+    - content
+    - to
+    - cc
+    - bcc
+    - from
+    - size
+    - attachments
+    - filename
+    - label
+
+
+sequence_feature_engineering:
+  input_base: "output/log_merged"
+  output_dir: "features/sequence"
+  scenarios:
+#    - scenario_1
+    - scenario_2
+#    - scenario_3
+
+  ldap_path: "output/ldap_with_device_department.csv"
+  http_csv: "output/http_domains_with_category.csv"
+
+  mappings:
+    behavior_map:
+      logon: 0
+      logoff: 1
+      connect: 2
+      disconnect: 3
+      open_zip: 4
+      open_doc: 5
+      open_pdf: 6
+      open_exe: 7
+      open_txt: 8
+      open_jpg: 9
+      write_zip: 10
+      write_doc: 11
+      write_pdf: 12
+      write_exe: 13
+      write_txt: 14
+      write_jpg: 15
+      email_I2I: 16
+      email_I2E: 17
+      email_E2I: 18
+      email_E2E: 19
+      web_cloud_storage: 20
+      web_hacktivist: 21
+      web_job_hunting: 22
+      web_neutral: 23
+
+    device_map:
+      personal: 0
+      department: 1
+      supervisor: 2
+      other: 3
+
+    time_map:
+      working_hours: 1
+      non_working_hours: 2
+
+
+stat_feature_engineering:
+  input_base: "output/log_merged"
+  output_dir: "features/statistics"
+  scenarios:
+#    - scenario_1
+    - scenario_2
+#    - scenario_3
+  ldap_path: "output/ldap_with_device_department.csv"
+  http_csv:  "output/http_domains_with_category.csv"
