@@ -13,7 +13,7 @@ The following diagram illustrates the overall structure of the **MambaITD framew
 
 📄 The full architecture is shown in the PDF below:
 
-<img src="./assets/Framwork_Structrue.pdf" alt="main" style="zoom: 33%;" />
+<img src="./assets/Framwork_Structrue.png" alt="main" style="zoom: 33%;" />
 
 👉 [View Framework Structure Diagram (PDF)](./assets/Framwork_Structrue.pdf)
 
