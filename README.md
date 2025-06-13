@@ -2,7 +2,22 @@
 
 MambaIDT is a pipeline for detecting insider threats by combining behavioral sequences and statistical features using a Mamba-inspired neural architecture.
 
----
+## 📐 Architecture Diagram
+
+The following diagram illustrates the overall structure of the **MambaITD framework**, including:
+
+- Multi-modal input processing (sequence & statistical views)
+- Dual Mamba-style encoders
+- Gated fusion mechanism
+- OTSU-based anomaly thresholding
+
+📄 The full architecture is shown in the PDF below:
+
+👉 [View Framework Structure Diagram (PDF)](./assets/Framwork_Structrue.pdf)
+
+![MambaITD Architecture](./assets/Framwork_Structrue.pdf)
+
+> If GitHub doesn't render the preview, click the link above to download or open the architecture PDF.
 
 ## 📁 Project Structure
 
@@ -38,6 +53,24 @@ MambaIDT/
 ```
 
 ---
+## 📂 Dataset Description
+
+This project uses the [CERT Insider Threat Dataset (R4.2,R5.2)](https://resources.sei.cmu.edu/library/asset-view.cfm?assetid=508099), a publicly available dataset developed by Carnegie Mellon University's Software Engineering Institute (SEI).
+
+### 📌 Overview
+
+The CERT R4.2, R5.2, dataset simulates real-world enterprise behavior from thousands of users over multiple months. It includes both benign and malicious behaviors such as data theft, sabotage, and policy violations.
+
+**Key modalities:**
+
+- `logon.csv` – User logon and logoff events  
+- `device.csv` – Removable media usage  
+- `http.csv` – Web browsing activities  
+- `file.csv` – File access events  
+- `email.csv` – Internal and external email traffic  
+
+Each log includes timestamps, user IDs, device IDs, and activity metadata.
+
 
 ## 🔧 Installation
 
