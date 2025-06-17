@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 
-class MambaBlock(nn.Module):
+class MambaEncoderBlock(nn.Module):
     def __init__(self, dim: int, kernel_size: int = 5):
         super().__init__()
         self.input_proj = nn.Linear(dim, 2 * dim)
